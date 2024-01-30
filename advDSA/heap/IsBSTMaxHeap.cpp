@@ -4,7 +4,7 @@ using namespace std;
 class Solution{
 
 public:
-
+	// Count Nodes Which shows the correct no. of Heap Element
 	int CountNode(Node* root){
 		if(root == NULL){
 			return 0;
@@ -12,7 +12,7 @@ public:
 		return 1 + CountNode(root->left) + CountNode(root->right);
 	}
 
-
+	// By Using The Count Value we can check for IsCBT 
 	bool isCBT(Node* root,int index,int count){
 		if(!root){
 			return true;
@@ -27,7 +27,7 @@ public:
 		return left && right;
 
 	}
-
+	// MaxHeap Condition acc to question
 	bool MaxOrder(Node* root){
 		if(!root){
 			return true;
