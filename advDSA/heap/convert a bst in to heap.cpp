@@ -1,8 +1,18 @@
 #include<iostream>
 #include<vector>
-using namespae std;
+using namespace std;
 
-
+class Node{
+public:
+	int data;
+	Node* left;
+	Node* right;
+	Node(int data){
+		this->data = data;
+		right = NULL;
+		left = NULL;
+	}
+};
 void solve(Node* root,vector<int>save,vector<int>&ans,int &index){
 	if(!root) return;
 	ans.push_back(save[index]);
@@ -12,9 +22,9 @@ void solve(Node* root,vector<int>save,vector<int>&ans,int &index){
 }
 void inorder(Node* root,vector<int>&save){
 	if(!root) return;
-	inorder(root->left);
+	inorder(root->left,save);
 	save.push_back(root->data);
-	inorder(root->right);
+	inorder(root->right,save);
 }
 
 void bstToHeap(Node* root,vector<int>&ans){
