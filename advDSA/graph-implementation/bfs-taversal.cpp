@@ -26,9 +26,13 @@ class graph{
 		cout<<endl;
 	}
 
-	void bfsTraversal(int source,vector<int>&ans){
-		queue<pair<int,list<int>>>q;
+		vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        vector<int>ans;
+        ans.push_back(0);
+        queue<pair<int,vector<int>>>q;
 		unordered_map<int,bool>vis;
+        vis[0] = true;
+		int source = 0;
 		q.push(make_pair(source,adj[source]));
 		while(!q.empty()){
 			auto el = q.front();
@@ -41,7 +45,8 @@ class graph{
 				}
 			}
 		}
-	}
+		return ans;
+    }
 };
 
 int main(){
