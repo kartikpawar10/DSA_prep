@@ -1,27 +1,41 @@
 #include<iostream>
 using namespace std;
 
-bool isCyclic(int src,unordered_map<int,bool>&visited,unordered_map<int,list<int>>&adj,unordered_map<int,int>parent){
-	parent[src] = -1;
-	visited[src] = 1;
-	queue<int>q;
-	q.push(src);
-	while(!q.empty()){
-		int front = q.front();
-		q.pop();
-// simple si baat h ki visited ho gya pr wo current level ka parent nhi aise kese
-		for(auto it: adj[front]){
-			if(visited[it] == true && it != parent[front]){
-				return false;
-			}else if(!visited[it]){
-				visited[it] = true;
-				parent[it] = front;
-				q.push(it);
-			}
-		}
-	}
-	return false;
-}
+   bool solve(int i,unordered_map<int,bool>&vis,vector<int> adj[]){
+        unordered_map<int,int>parent;
+        parent[i] = -1;
+        vis[i] = true;
+        queue<int>q;
+        q.push(i);
+        while(!q.empty()){
+            int front = q.front();
+            q.pop();
+            for(auto it:adj[front]){
+                if(vis[it] && it != parent[front]){
+                    return true;
+                }else if(!vis[it]){
+                    q.push(it);
+                    vis[it] = true;
+                    parent[it] = front;
+                }
+            }
+        }
+        return false;
+    }
+    bool isCycle(int V, vector<int> adj[]) {
+        // Code here
+        unordered_map<int,bool>vis;
+        bool ans = false;
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                ans = solve(i,vis,adj);
+                if(ans == true){
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
 
 int main(){
 	return 0;
